@@ -1,0 +1,87 @@
+﻿RAW ROWS 303
+RAW DUPLICATES 0
+MISSING PER COLUMN
+ca      4
+thal    2
+dtype: int64
+CLEAN ROWS 303
+CLASS COUNTS
+target
+0    164
+1    139
+Name: count, dtype: int64
+
+=== MODEL COMPARISON ===
+model,cv_accuracy,cv_precision,cv_recall,cv_f1,cv_roc_auc,test_accuracy,test_precision,test_recall,test_f1,test_roc_auc
+logistic_regression,0.8511,0.8776,0.7921,0.8299,0.9113,0.8852,0.8387,0.9286,0.8814,0.961
+random_forest,0.8098,0.8194,0.7557,0.7821,0.8996,0.8852,0.8387,0.9286,0.8814,0.9481
+gradient_boosting,0.8179,0.829,0.7735,0.7938,0.884,0.8852,0.8621,0.8929,0.8772,0.9448
+
+=== MODEL METADATA ===
+{
+  "model_name": "logistic_regression",
+  "model_version": "20261010161647",
+  "trained_at": "2026-10-10T16:16:47.962216+00:00",
+  "sklearn_version": "1.5.2",
+  "features": [
+    "age",
+    "trestbps",
+    "chol",
+    "thalach",
+    "oldpeak",
+    "ca",
+    "sex",
+    "cp",
+    "fbs",
+    "restecg",
+    "exang",
+    "slope",
+    "thal"
+  ],
+  "target": "target",
+  "best_params": {
+    "C": 0.1,
+    "class_weight": null
+  },
+  "cv_metrics": {
+    "accuracy": 0.8511,
+    "precision": 0.8776,
+    "recall": 0.7921,
+    "f1": 0.8299,
+    "roc_auc": 0.9113
+  },
+  "test_metrics": {
+    "accuracy": 0.8852,
+    "precision": 0.8387,
+    "recall": 0.9286,
+    "f1": 0.8814,
+    "roc_auc": 0.961
+  },
+  "n_train": 242,
+  "data_file": "heart_disease_clean.csv",
+  "mlflow_run_id": "f1ddcdb6f8f34fdda22a6f3433cd3041"
+}
+
+=== EDA SUMMARY STATISTICS ===
+,count,mean,std,min,25%,50%,75%,max
+age,303.0,54.44,9.04,29.0,48.0,56.0,61.0,77.0
+sex,303.0,0.68,0.47,0.0,0.0,1.0,1.0,1.0
+cp,303.0,3.16,0.96,1.0,3.0,3.0,4.0,4.0
+trestbps,303.0,131.69,17.6,94.0,120.0,130.0,140.0,200.0
+chol,303.0,246.69,51.78,126.0,211.0,241.0,275.0,564.0
+fbs,303.0,0.15,0.36,0.0,0.0,0.0,0.0,1.0
+restecg,303.0,0.99,0.99,0.0,0.0,1.0,2.0,2.0
+thalach,303.0,149.61,22.88,71.0,133.5,153.0,166.0,202.0
+exang,303.0,0.33,0.47,0.0,0.0,0.0,1.0,1.0
+oldpeak,303.0,1.04,1.16,0.0,0.0,0.8,1.6,6.2
+slope,303.0,1.6,0.62,1.0,1.0,2.0,2.0,3.0
+ca,303.0,0.66,0.93,0.0,0.0,0.0,1.0,3.0
+thal,303.0,4.72,1.94,3.0,3.0,3.0,7.0,7.0
+target,303.0,0.46,0.5,0.0,0.0,0.0,1.0,1.0
+
+=== PYTEST ===
+  C:\Users\Debabrata\OneDrive\Desktop\MLOps\heart-disease-mlops\heart-disease-mlops\.venv\Lib\site-packages\matplotlib\_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================= 29 passed, 15 warnings in 73.99s (0:01:13) ==================
