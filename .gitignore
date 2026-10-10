@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+mlruns/
+mlartifacts/
+mlflow.db
+logs/
+reports/runs/
+*.log
+.DS_Store
+# NOTE: data/ and models/ are intentionally committed (cleaned dataset + final model)

@@ -1,0 +1,57 @@
+# ConfigMaps grafana-datasources / grafana-dashboard-provider / grafana-dashboards are created
+# from the files in monitoring/grafana (see README / scripts/k8s_deploy.sh).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: heart-disease
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana:11.2.2
+          env:
+            - name: GF_SECURITY_ADMIN_USER
+              value: admin
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              value: admin
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: datasources
+              mountPath: /etc/grafana/provisioning/datasources
+            - name: dashboard-provider
+              mountPath: /etc/grafana/provisioning/dashboards
+            - name: dashboards
+              mountPath: /var/lib/grafana/dashboards
+      volumes:
+        - name: datasources
+          configMap:
+            name: grafana-datasources
+        - name: dashboard-provider
+          configMap:
+            name: grafana-dashboard-provider
+        - name: dashboards
+          configMap:
+            name: grafana-dashboards
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: heart-disease
+spec:
+  type: LoadBalancer      # Docker Desktop: localhost:3000 | Minikube: `minikube tunnel` or port-forward
+  selector:
+    app: grafana
+  ports:
+    - port: 3000
+      targetPort: 3000

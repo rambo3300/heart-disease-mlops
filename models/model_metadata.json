@@ -1,0 +1,43 @@
+{
+  "model_name": "logistic_regression",
+  "model_version": "20261010161647",
+  "trained_at": "2026-10-10T16:16:47.962216+00:00",
+  "sklearn_version": "1.5.2",
+  "features": [
+    "age",
+    "trestbps",
+    "chol",
+    "thalach",
+    "oldpeak",
+    "ca",
+    "sex",
+    "cp",
+    "fbs",
+    "restecg",
+    "exang",
+    "slope",
+    "thal"
+  ],
+  "target": "target",
+  "best_params": {
+    "C": 0.1,
+    "class_weight": null
+  },
+  "cv_metrics": {
+    "accuracy": 0.8511,
+    "precision": 0.8776,
+    "recall": 0.7921,
+    "f1": 0.8299,
+    "roc_auc": 0.9113
+  },
+  "test_metrics": {
+    "accuracy": 0.8852,
+    "precision": 0.8387,
+    "recall": 0.9286,
+    "f1": 0.8814,
+    "roc_auc": 0.961
+  },
+  "n_train": 242,
+  "data_file": "heart_disease_clean.csv",
+  "mlflow_run_id": "f1ddcdb6f8f34fdda22a6f3433cd3041"
+}
