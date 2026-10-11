@@ -1,7 +1,7 @@
 {
   "model_name": "logistic_regression",
-  "model_version": "20261010161647",
-  "trained_at": "2026-10-10T16:16:47.962216+00:00",
+  "model_version": "20261011054651",
+  "trained_at": "2026-10-11T05:46:51.803381+00:00",
   "sklearn_version": "1.5.2",
   "features": [
     "age",
@@ -39,5 +39,5 @@
   },
   "n_train": 242,
   "data_file": "heart_disease_clean.csv",
-  "mlflow_run_id": "f1ddcdb6f8f34fdda22a6f3433cd3041"
+  "mlflow_run_id": "1b597b8b2f8b4a0faf7bf4305edd4a31"
 }
