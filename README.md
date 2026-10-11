@@ -159,20 +159,3 @@ git remote add origin https://github.com/<you>/<repo>.git
 git push -u origin main
 ```
 
-## 11. Final deliverables checklist
-
-- [ ] `python scripts/download_data.py` run and `data/` committed
-- [ ] `python -m src.train` run; `models/model.joblib` committed
-- [ ] Screenshots in `screenshots/` (see checklist there)
-- [ ] `docs/REPORT.md` filled in -> exported to PDF (10 pages)
-- [ ] GitHub repo URL added to the report
-- [ ] Short screen-recording of the pipeline (see `docs/VIDEO_SCRIPT.md`)
-
-## Troubleshooting
-
-* **`docker build` fails: models/ not found** -> run `python -m src.train` first.
-* **`ImagePullBackOff` in Kubernetes** -> the image isn't visible to the cluster: use `minikube image load` /
-  `kind load docker-image`, or Docker Desktop's *kubeadm* cluster type. `imagePullPolicy` is `IfNotPresent`.
-* **LoadBalancer `<pending>` on Minikube** -> run `minikube tunnel` in a separate terminal.
-* **Grafana shows "No data"** -> send traffic with `scripts/generate_traffic.py`; check Prometheus targets page.
-* **Port already in use** -> change the left side of `-p 8000:8000` or the Service `port` in `k8s/service.yaml`.
