@@ -20,8 +20,6 @@ Open this file in **VS Code** (right-click the tab, then *Open Preview*, or pres
 | GitHub repo | https://github.com/rambo3300/heart-disease-mlops | Steps 1 and 9 |
 | GitHub Actions | https://github.com/rambo3300/heart-disease-mlops/actions | Step 1 |
 
-Grafana dashboard: **Dashboards, then Heart Disease API**, time range **Last 5 minutes**.
-
 ---
 
 ## Part A: Cleanup BEFORE recording (not recorded)
@@ -51,8 +49,6 @@ docker info
 kubectl get nodes
 ```
 
-Prepare the terminal (short path, so your username isn't visible), then press **Record**:
-
 ```powershell
 cd C:\
 mkdir Demo
@@ -60,19 +56,9 @@ cd Demo
 cls
 ```
 
-Browser tabs to open first: the GitHub repo and its Actions tab (green run).
-
 ---
 
-## Step 1: Show the repository (about 20 s)
-
-Show the GitHub repo page, then the Actions tab with the green run and four jobs.
-
-> *Say:* "This is my end-to-end MLOps project. I'll run it from a clean clone to reproduce everything from scratch."
-
----
-
-## Step 2: Clean clone and environment (about 40 s, pause during pip)
+## Step 1: Get clean clone and environment
 
 ```powershell
 git clone https://github.com/rambo3300/heart-disease-mlops.git
@@ -89,11 +75,9 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-> *Say:* "A fresh virtual environment with every dependency installed from the pinned requirements file."
-
 ---
 
-## Step 3: Data and EDA (about 30 s)
+## Step 2: Data and EDA
 
 ```powershell
 cls
@@ -102,13 +86,9 @@ python -m src.eda
 explorer reports\figures
 ```
 
-Open `02_class_balance.png` and `06_correlation_heatmap.png` for a few seconds each.
-
-> *Say:* "Data comes from UCI and is cleaned: 303 patients, nearly balanced classes. EDA shows heart rate, vessel count and thal separate the classes."
-
 ---
 
-## Step 4: Lint and tests (about 20 s, pause during pytest)
+## Step 3: Lint and tests
 
 ```powershell
 cls
@@ -118,11 +98,9 @@ python -m pytest -q -p no:warnings
 
 `flake8` prints nothing when it passes. Pytest ends with `29 passed`.
 
-> *Say:* "Linting passes and all 29 unit tests pass."
-
 ---
 
-## Step 5: Training and MLflow (about 60 s, pause during training)
+## Step 4: Training and MLflow
 
 ```powershell
 cls
@@ -138,11 +116,10 @@ python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --port 5000
 
 Open **http://localhost:5000**, click experiment `heart-disease-classification`, expand `training-session`, open one model run (parameters, metrics, Artifacts tab). Then go back to the terminal and press **Ctrl + C**.
 
-> *Say:* "Three models were tuned with 5-fold cross-validation. Logistic regression won with CV ROC-AUC about 0.91. MLflow tracks parameters, metrics, plots and the model for every run."
 
 ---
 
-## Step 6: Docker (about 45 s, pause during build)
+## Step 5: Docker
 
 ```powershell
 cls
@@ -166,11 +143,9 @@ Stop the container before the next step:
 docker rm -f heart-api
 ```
 
-> *Say:* "The model is served from a container. This request returns a prediction with a confidence, and every request is logged as structured JSON."
-
 ---
 
-## Step 7: Kubernetes deployment (about 60 s)
+## Step 6: Kubernetes deployment
 
 ```powershell
 cls
@@ -206,11 +181,9 @@ python scripts/smoke_test.py http://localhost:8080
 
 Optional: open **http://localhost:8080/docs**.
 
-> *Say:* "Two API replicas run behind a LoadBalancer on Docker Desktop's Kubernetes, with readiness and liveness probes. The same request now works through port 8080."
-
 ---
 
-## Step 8: Monitoring (about 60 s)
+## Step 7: Monitoring
 
 **Second PowerShell window** (leave it running):
 
@@ -237,47 +210,3 @@ Back in the first window:
 kubectl -n heart-disease logs deploy/heart-disease-api --tail=10
 ```
 
-> *Say:* "Prometheus scrapes the API metrics. Grafana shows request rate, latency, predictions per class and status codes, including a few deliberately invalid requests. The logs show each request as JSON."
-
----
-
-## Step 9: Wrap up (about 10 s)
-
-Show the GitHub repo page again, then **stop recording**.
-
-> *Say:* "That's the full pipeline from data to a monitored deployment. Code, report and instructions are in the repository."
-
----
-
-## After recording
-
-```powershell
-kubectl delete namespace heart-disease
-docker rm -f heart-api
-```
-
-Press **Ctrl + C** in the port-forward window. Then:
-
-1. Play back a few seconds to check audio and readability.
-2. Upload to Google Drive or YouTube (Unlisted), set "Anyone with the link can view", and test the link in a private window.
-3. Add the link to `docs/REPORT.md` in your **original** project folder (not `C:\Demo`), then:
-
-```powershell
-git add .
-git commit -m "Add demo video link"
-git push
-```
-
----
-
-## Quick fixes if something fails on camera
-
-| Problem | Fix |
-|---|---|
-| Port already in use | Re-run Part A cleanup |
-| Pod `ImagePullBackOff` | Step 6 build did not finish: re-run `docker build -t heart-disease-api:1.0.0 .` |
-| Pod stuck `Pending` / `ContainerCreating` | Wait 30 s and re-run `kubectl -n heart-disease get pods` |
-| Grafana graphs empty | Re-run the traffic command, wait 10 s |
-| `.\.venv\Scripts\Activate.ps1` blocked | Run the `Set-ExecutionPolicy` line first |
-| Clone asks for a login | Repo is private: make it public or sign in |
-| Prometheus page won't load | The port-forward window was closed: restart it |
