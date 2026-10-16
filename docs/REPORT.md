@@ -2,12 +2,12 @@
 
 **Course:** Machine Learning Operations (MLOps) AIMLCZG523
 **Student:** Ritabrata Chakraborty | **Student ID:** 2025AE05627
-**Date:** 11 October 2026
+**Date:** 16 October 2026
 
 | | |
 |---|---|
 | **Code repository** | https://github.com/rambo3300/heart-disease-mlops |
-| **Demo video** | [PASTE VIDEO LINK HERE] |
+| **Demo video** | https://drive.google.com/file/d/1-80kzyCzpoHcGA86AKi0jVrkBiBsvfLR/view?usp=drive_link |
 | **Deployed API (local Kubernetes)** | `http://localhost:8080/predict` - access instructions in Section 9 |
 
 ---
